@@ -27,6 +27,15 @@ form input {
   color: #333;
   border: 1px solid #dcdce6;
   border-radius: 8px;
+  padding: 0 5px;
+}
+
+form select {
+  width: 100%;
+  height: 60px;
+  color: #333;
+  border: 1px solid #dcdce6;
+  border-radius: 8px;
   padding: 0 24px;
 }
 
@@ -65,8 +74,10 @@ form textarea {
 .back-link {
   display: flex;
   align-items: center;
-  margin-top: 40px;
-  color: #41414d;
+  margin-top: 20px;
+  color: #f0f0f5;
+  background-color: #333;
+  padding: 15px;
   font-size: 18px;
   text-decoration: none;
   font-weight: 500;
@@ -79,4 +90,80 @@ form textarea {
 
 .back-link:hover {
   opacity: 0.8;
+}
+
+.producao{
+  padding: 10px;
+  margin-top: 15px;
+  border: 1px solid #333;
+}
+
+.producao h3{
+  text-align: center;
+  padding-bottom: 5px;
+}
+
+.producao p{
+  text-align: justify;
+}
+
+section h1{
+  text-align: center;
+}
+
+.register-container {
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+.register-container .content {
+  width: 100%;
+  padding: 20px 96px;
+  background: #f0f0f5;
+  box-shadow: 0 0 100px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.register-container .content section {
+  width: 100%;
+  max-width: 20%;
+  align-self: start;
+  padding-top: 10px;
+}
+
+.register-container .content form h1 {
+ 
+  font-size: 32px;
+}
+
+.register-container .content form p {
+  font-size: 18px;
+  color: #737380;
+  line-height: 32px;
+  padding-top: 15px;
+}
+
+.register-container .content form {
+  width: 100%;
+  padding: 0 10%;
+}
+
+.register-container .content form input {
+  margin-top: 8px;
+}
+
+.register-container .content form .input-group {
+  display: flex;
+}
+
+.register-container .content form .input-group input + input {
+  margin-left: 8px;
 }
