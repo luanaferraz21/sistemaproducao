@@ -42,7 +42,25 @@ export default function Register() {
   return (
     <div className="register-container">
       <div className="content">
+      <section>
+        
+        <h1>Produção</h1>
 
+        <div className="producao">
+          <h3>Maio 2020 - 24/05</h3>
+          <p>Demanda: 320pcs</p>
+          <p>Produzido: 127pcs</p>
+          <p>Restam: 193pcs</p>
+        </div>
+       
+
+        <Link className="back-link" to="/producao">Produção</Link>
+        <Link className="back-link" to="/demanda/cadastrar">Demanda</Link>
+        <Link className="back-link" to="/demanda/cadastrar">Produtos Defeituosos</Link>
+        <Link className="back-link" to="/demanda/cadastrar">Equipamentos</Link>
+        <Link className="back-link" to="/operador/cadastrar">Operadores</Link>
+      </section>
+      
         <form onSubmit={handleRegister}>
 
         <h1>Cadastro de Funcionário</h1>      
