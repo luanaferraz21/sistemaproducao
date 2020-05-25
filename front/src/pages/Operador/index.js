@@ -54,10 +54,11 @@ export default function Register() {
         </div>
        
 
-        <Link className="back-link" to="/producao">Produção</Link>
+        <Link className="back-link" to="/producao/cadastrar">Produção</Link>
         <Link className="back-link" to="/demanda/cadastrar">Demanda</Link>
-        <Link className="back-link" to="/demanda/cadastrar">Produtos Defeituosos</Link>
-        <Link className="back-link" to="/demanda/cadastrar">Equipamentos</Link>
+        <Link className="back-link" to="/materiaprima">Matéria Prima</Link>
+        <Link className="back-link" to="/defeitos">Produtos Defeituosos</Link>
+        <Link className="back-link" to="/equipamento/relatorio">Equipamentos</Link>
         <Link className="back-link" to="/operador/cadastrar">Operadores</Link>
       </section>
       
@@ -93,6 +94,7 @@ export default function Register() {
             placeholder="Data Admissão"
             value={data}
             onChange={e => setData(e.target.value)}
+            type="date"
           />
         </div>
             
@@ -111,6 +113,7 @@ export default function Register() {
               placeholder="17:00" 
               value={saida}
               onChange={e => setSaida(e.target.value)}
+
             />
           </div>
 
