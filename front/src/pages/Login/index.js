@@ -19,7 +19,7 @@ return (
             <input type="senha" id="senha" placeholder="Digite aqui sua senha"/>
             </form>
 
-            <Link className="back-link" to="/producao">Produção</Link>
+            <Link className="back-link" to="/producao/cadastrar">Entrar</Link>
         </div>
     </div>
   );

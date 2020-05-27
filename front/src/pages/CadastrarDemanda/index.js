@@ -47,7 +47,6 @@ export default function Register() {
             <p>Restam: 193pcs</p>
           </div>
 
-
           <Link className="back-link" to="/producao/cadastrar">Produção</Link>
           <Link className="back-link" to="/demanda/cadastrar">Demanda</Link>
           <Link className="back-link" to="/materiaprima">Matéria Prima</Link>
