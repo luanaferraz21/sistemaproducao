@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-//import { FiArrowLeft } from 'react-icons/fi';
 
-//import api from '../../services/api';
 import './styles.css';
 
-
 export default function Register() {
-  const [demanda, setDemanda] = useState('');
+  const [quantidade, setQuantidade] = useState('');
+  const [produtosDefeituosos, setProdutosDefeituosos] = useState('');
   const [data, setData] = useState('');
 
 
@@ -17,7 +15,8 @@ export default function Register() {
     e.preventDefault();
 
     const data = {
-      demanda,
+      quantidade,
+      produtosDefeituosos,
       data
     };
 
@@ -32,22 +31,19 @@ export default function Register() {
     }
   }
 
-  return (
+  return(
     <div className="register-container">
+
       <div className="content">
 
-      <section>
-        
-          <h1>Produção</h1>
-
-          <div className="producao">
+        <section>
+        <div className="producao">
             <h3>Maio 2020 - 24/05</h3>
             <p>Demanda: 320pcs</p>
             <p>Produzido: 127pcs</p>
             <p>Restam: 193pcs</p>
           </div>
          
-
           <Link className="back-link" to="/producao/cadastrar">Produção</Link>
           <Link className="back-link" to="/demanda/cadastrar">Demanda</Link>
           <Link className="back-link" to="/demanda/cadastrar">Produtos Defeituosos</Link>
@@ -56,24 +52,33 @@ export default function Register() {
         </section>
 
         <form onSubmit={handleRegister}>
-          <h1>Adicionar Demanda</h1> 
+          <h1>Adicionar Produção</h1> 
 
           <p>Produto</p>
-<select>
-  <option value="estojo">Estojo Infantil</option>
-  <option value="estojo">Estojo Infantil</option>
-  <option selected value="estojo">Estojo Infantil</option>
-  <option value="estojo">Estojo Infantil</option>
-</select>
+            <select>
+              <option value="estojo">Estojo Infantil</option>
+              <option value="estojo">Estojo Infantil</option>
+              <option selected value="estojo">Estojo Infantil</option>
+              <option value="estojo">Estojo Infantil</option>
+            </select>
 
-          <p>Demanda (quantidade)</p>
+          <p>Quantidade</p>
           <input 
-            placeholder="Demanda"
-            value={demanda}
-            type="number"
-            min = "1"
-            onChange={e => setDemanda(e.target.value)}
-          />
+          placeholder="Quantidade"
+          value={quantidade}
+          type={Number}
+          min="1"
+          onChange={e => setQuantidade(e.target.value)}
+          /> 
+
+        <p>Produtos defeituosos</p>
+          <input 
+          placeholder="ProdutosDefeituosos"
+          value={produtosDefeituosos}
+          type={Number}
+          min="1"
+          onChange={e => setProdutosDefeituosos(e.target.value)}
+          />  
 
           <p>Data</p>
           <input 
@@ -83,8 +88,9 @@ export default function Register() {
             />
 
           <button className="button" type="submit">Cadastrar</button>
+             
         </form>
       </div>
     </div>
-  );
+  )
 }
