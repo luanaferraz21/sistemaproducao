@@ -54,7 +54,7 @@ export default function Register() {
         </div>
        
 
-        <Link className="back-link" to="/producao">Produção</Link>
+        <Link className="back-link" to="/producao/cadastrar">Produção</Link>
         <Link className="back-link" to="/demanda/cadastrar">Demanda</Link>
         <Link className="back-link" to="/demanda/cadastrar">Produtos Defeituosos</Link>
         <Link className="back-link" to="/demanda/cadastrar">Equipamentos</Link>
