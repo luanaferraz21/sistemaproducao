@@ -7,6 +7,7 @@ import CadastrarDemanda from './pages/CadastrarDemanda';
 import CadastrarProducao from  './pages/CadastrarProducao';
 import Equipamento from './pages/Equipamento';
 import Defeitos from './pages/Defeitos';
+import RelatorioProducao from './pages/RelatorioProducao';
 
 
 export default function Routes() {
@@ -20,6 +21,7 @@ export default function Routes() {
         <Route path="/producao/cadastrar" component={CadastrarProducao} />
         <Route path="/equipamento/relatorio" component={Equipamento} />
         <Route path="/defeitos" component={Defeitos} />
+        <Route path="/relatorioProducao" component={RelatorioProducao} />
       </Switch>
     </BrowserRouter>
   );
