@@ -63,101 +63,93 @@ export default function Register() {
         </section>
 
         <div>
-          <form onSubmit={handleRegister}>
+          <div id="titulo">
 
-            <h1>Relatório de utilização de equipamento</h1>
+            <form onSubmit={handleRegister}>
 
-            <div className="input-group">
-              <p>Inicio
+              {/* <h1>Relatório de utilização de equipamento</h1> */}
+              <h1>Relatório de Produção Diária</h1>
+
+              <div className="input-group">
+                <p>Inicio
                 <input
-                  placeholder="Cargo"
-                  value={cargo}
-                  type="date"
-                /></p>
+                    placeholder=""
+                    value={cargo}
+                    type="date"
+                  /></p>
 
-              <p>Fim
+                <p>Fim
                 <input
-                  placeholder="Data Admissão"
-                  value={data}
-                  type="date"
-                />
-              </p>
-            </div>
-
-            <div className="input-group">
-              <p>Equipamento
-                <select>
-                  <option selected value="estojo">TODOS EQUIPAMENTOS</option>
-                  <option value="estojo">Impressora de Tecido</option>
-                  <option value="estojo">Máquina de Corte</option>
-                  <option value="estojo">Máquina de Costura</option>
-                </select>
-              </p>
-
-              <p>Operador
-                <select>
-                  <option selected value="estojo">TODOS OPERADORES</option>
-                  <option value="estojo">Luana</option>
-                  <option value="estojo">Clara</option>
-
-                </select>
-              </p>
-            </div>
-
-            <button className="button" type="submit">Gerar Relatório</button>
-          </form>
-
+                    placeholder=""
+                    value={data}
+                    type="date"
+                  />
+                </p>
+              </div>
+              <button className="button" type="submit">Gerar Relatório</button>
+            </form>
+          </div>
           <section className="relatorio">
             <h2>Relatório</h2>
             <p>De 25/05/2020 a 29/05/2020</p>
-            <p>EQUIPAMENTO: Impressora de Tecidos</p>
-            <p>OPERADOR: Todos operadores</p>
 
-            <img src={impressora} alt="Equipamento" />
-            <p>Nº de Série: 0007-9970-09</p>
-            <p>Data de Aquisição: 07/02/2020</p>
-
-            <h4>Utilizações</h4>
+            <h4>Estojo Infantil</h4>
             <table >
               <tr>
                 <th>Data</th>
-                <th>Horário</th>
-                <th>Código</th>
-                <th>Nome</th>
+                <th>Quantidade Produzida</th>
               </tr>
               <tr>
                 <td>25/05/2020</td>
-                <td>08:00 - 12:00</td>
-                <td>001</td>
-                <td>Clara</td>
+                <td>5</td>
               </tr>
               <tr>
                 <td>26/05/2020</td>
-                <td>08:00 - 12:00</td>
-                <td>001</td>
-                <td>Clara</td>
+                <td>5</td>
               </tr>
               <tr>
                 <td>27/05/2020</td>
-                <td>08:00 - 12:00</td>
-                <td>001</td>
-                <td>Clara</td>
+                <td>5</td>
               </tr>
               <tr>
                 <td>28/05/2020</td>
-                <td>08:00 - 12:00</td>
-                <td>001</td>
-                <td>Clara</td>
+                <td>5</td>
               </tr>
               <tr>
                 <td>29/05/2020</td>
-                <td>08:00 - 12:00</td>
-                <td>001</td>
-                <td>Clara</td>
+                <td>5</td>
               </tr>
             </table>
-          </section>
 
+            <h4>Estojo Feminino</h4>
+            <table>
+              <tr>
+                <th>Data</th>
+                <th>Quantidade Produzida</th>
+              </tr>
+              <tr>
+                <td>25/05/2020</td>
+                <td>5</td>
+              </tr>
+              <tr>
+                <td>26/05/2020</td>
+                <td>5</td>
+              </tr>
+              <tr>
+                <td>27/05/2020</td>
+                <td>5</td>
+              </tr>
+              <tr>
+                <td>28/05/2020</td>
+                <td>5</td>
+              </tr>
+              <tr>
+                <td>29/05/2020</td>
+                <td>5</td>
+              </tr>
+            </table>
+
+          </section>
         </div>
       </div>
     </div>

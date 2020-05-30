@@ -56,8 +56,8 @@ export default function Register() {
 
           <Link className="back-link" to="/producao/cadastrar">Produção</Link>
           <Link className="back-link" to="/demanda/cadastrar">Demanda</Link>
-          <Link className="back-link" to="/materiaprima">Matéria Prima</Link>
           <Link className="back-link" to="/defeitos">Produtos Defeituosos</Link>
+          <Link className="back-link" to="/relatorioProducao">Produção Diária</Link>
           <Link className="back-link" to="/equipamento/relatorio">Equipamentos</Link>
           <Link className="back-link" to="/operador/cadastrar">Operadores</Link>
         </section>
