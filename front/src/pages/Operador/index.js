@@ -46,52 +46,64 @@ export default function Register() {
   return (
     <div className="register-container">
       <div className="content">
-      <section>
-        
-        <h1>Produção</h1>
+        <section>
 
-        <div className="producao">
-          <h3>Maio 2020 - 24/05</h3>
-          <p>Demanda: 320pcs</p>
-          <p>Produzido: 127pcs</p>
-          <p>Restam: 193pcs</p>
-        </div>
-       
+          <h1>Produção</h1>
 
-        <Link className="back-link" to="/producao/cadastrar">Produção</Link>
-        <Link className="back-link" to="/demanda/cadastrar">Demanda</Link>
-        <Link className="back-link" to="/materiaprima">Matéria Prima</Link>
-        <Link className="back-link" to="/defeitos">Produtos Defeituosos</Link>
-        <Link className="back-link" to="/equipamento/relatorio">Equipamentos</Link>
-        <Link className="back-link" to="/operador/cadastrar">Operadores</Link>
-      </section>
-      
+          <div className="producao">
+            <h3>Maio 2020 - 24/05</h3>
+            <p>Demanda: 320pcs</p>
+            <p>Produzido: 127pcs</p>
+            <p>Restam: 193pcs</p>
+          </div>
+
+
+          <Link className="back-link" to="/producao/cadastrar">Produção</Link>
+          <Link className="back-link" to="/demanda/cadastrar">Demanda</Link>
+          <Link className="back-link" to="/defeitos">Produtos Defeituosos</Link>
+          <Link className="back-link" to="/relatorioProducao">Produção Diária</Link>
+          <Link className="back-link" to="/equipamento/relatorio">Equipamentos</Link>
+          <Link className="back-link" to="/operador/cadastrar">Operadores</Link>
+        </section>
+
         <form onSubmit={handleRegister}>
 
-        <h1>Cadastro de Funcionário</h1>      
-        <p>Nome Completo</p>
-          <input 
+          <h1>Cadastro de Funcionário</h1>
+          <p>Nome Completo</p>
+          <input
             placeholder="Nome Completo"
             value={nome}
             onChange={e => setNome(e.target.value)}
           />
 
-        <p>E-mail</p>
-          <input 
-            type="email" 
+
+          <p>E-mail</p>
+          <input
+            type="email"
             placeholder="E-mail"
             value={email}
             onChange={e => setEmail(e.target.value)}
           />
 
-        
-            <div>
+
+          <div>
             <p>Cargo</p>
-            <input 
-            placeholder="Cargo"
-            value={cargo}
-            onChange={e => setCargo(e.target.value)}
-          />
+            <input
+              placeholder="Cargo"
+              value={cargo}
+              onChange={e => setCargo(e.target.value)}
+            />
+
+            <p>Data de Admissão</p>
+            <input
+              placeholder="Data Admissão"
+              value={data}
+              onChange={e => setData(e.target.value)}
+              type="date"
+            />
+          </div>
+
+
 
           <p>Data de Admissão</p>
         <input 
@@ -100,21 +112,22 @@ export default function Register() {
             onChange={e => setData(e.target.value)}
             type = "date"
           />
-        </div>
+       
             
          
         
+
           <p>Horário de Trabalho</p>
           <div className="input-group">
-            
-            <input 
+
+            <input
               placeholder="08:00"
               value={entrada}
               onChange={e => setEntrada(e.target.value)}
             />
 
-            <input 
-              placeholder="17:00" 
+            <input
+              placeholder="17:00"
               value={saida}
               onChange={e => setSaida(e.target.value)}
 
