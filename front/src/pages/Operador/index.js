@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 //import { FiArrowLeft } from 'react-icons/fi';
 
-//import api from '../../services/api';
+import api from '../../services/api';
 import './styles.css';
 
 
 export default function Register() {
-  const [name, setName] = useState('');
+  const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [cargo, setCargo] = useState('');
   const [data, setData] = useState('');
@@ -19,8 +19,8 @@ export default function Register() {
   async function handleRegister(e) {
     e.preventDefault();
 
-    const data = {
-      name,
+    const dados = {
+      nome,
       email,
       cargo,
       data,
@@ -28,16 +28,20 @@ export default function Register() {
       saida
     };
 
+  
     try {
-      //const response = await api.post('ongs', data);
+      const response = await api.post('/operador', dados);
 
-      //alert(`Seu ID de acesso: ${response.data.id}`);
+      alert(`Operador cadastrado com sucesso`);
 
-      history.push('/');
+      history.push('/operador/cadastrar');
     } catch (err) {
-      alert('Erro no cadastro, tente novamente.');
+      alert(err);
     }
+
+  
   }
+  
 
   return (
     <div className="register-container">
@@ -68,11 +72,11 @@ export default function Register() {
         <p>Nome Completo</p>
           <input 
             placeholder="Nome Completo"
-            value={name}
-            onChange={e => setName(e.target.value)}
+            value={nome}
+            onChange={e => setNome(e.target.value)}
           />
 
-<p>E-mail</p>
+        <p>E-mail</p>
           <input 
             type="email" 
             placeholder="E-mail"
@@ -94,7 +98,7 @@ export default function Register() {
             placeholder="Data Admissão"
             value={data}
             onChange={e => setData(e.target.value)}
-            type="date"
+            type = "date"
           />
         </div>
             
