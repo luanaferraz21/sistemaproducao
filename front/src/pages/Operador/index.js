@@ -34,9 +34,9 @@ export default function Register() {
 
       alert(`Operador cadastrado com sucesso`);
 
-      history.push('/operador/cadastrar');
+      history.push('/');
     } catch (err) {
-      alert(err);
+      alert(`Não foi possível cadastrar, tente novamente`);
     }
 
   
@@ -85,25 +85,12 @@ export default function Register() {
             onChange={e => setEmail(e.target.value)}
           />
 
-
-          <div>
             <p>Cargo</p>
             <input
               placeholder="Cargo"
               value={cargo}
               onChange={e => setCargo(e.target.value)}
             />
-
-            <p>Data de Admissão</p>
-            <input
-              placeholder="Data Admissão"
-              value={data}
-              onChange={e => setData(e.target.value)}
-              type="date"
-            />
-          </div>
-
-
 
           <p>Data de Admissão</p>
         <input 
@@ -112,10 +99,6 @@ export default function Register() {
             onChange={e => setData(e.target.value)}
             type = "date"
           />
-       
-            
-         
-        
 
           <p>Horário de Trabalho</p>
           <div className="input-group">

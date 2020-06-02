@@ -10,9 +10,7 @@ module.exports = {
   async create(request, response) {
 
     const { id, nome, email, cargo, data, entrada, saida } = request.body;
-
-    
-    
+     
     await connection('operadores').insert({
       id,
       nome, 
