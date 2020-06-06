@@ -1,32 +1,50 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 //import { FiArrowLeft } from 'react-icons/fi';
 
-//import api from '../../services/api';
+import api from '../../services/api';
 import './styles.css';
 
 
 export default function Register() {
-  const [demanda, setDemanda] = useState('');
+  const [quantidade, setQuantidade] = useState('');
   const [data, setData] = useState('');
+  const [produtos, setProdutos] = useState([]);
 
+  const [selectedProduto, setSelectedProduto] = useState('0');
 
   const history = useHistory();
+
+  useEffect(() => {
+    api.get('/produtos').then((response) => {
+      setProdutos(response.data);
+    });
+
+    
+  }, []);
+
+  function handleSelectProduto(e) {
+    const produto = e.target.value;
+    setSelectedProduto(produto);
+  }
 
   async function handleRegister(e) {
     e.preventDefault();
 
-    const data = {
-      demanda,
-      data
+        const produto = selectedProduto;
+
+    const dados = {
+      quantidade,
+      data,
+      produto
     };
 
     try {
-      //const response = await api.post('ongs', data);
+      const response = await api.post('demandas', dados);
 
-      //alert(`Seu ID de acesso: ${response.data.id}`);
+      alert(`Demanda de produção cadastrada com sucesso`);
 
-      history.push('/');
+      history.push('/demanda/cadastrar');
     } catch (err) {
       alert('Erro no cadastro, tente novamente.');
     }
@@ -59,20 +77,28 @@ export default function Register() {
           <h1>Adicionar Demanda</h1>
 
           <p>Produto</p>
-          <select>
-            <option value="estojo">Estojo Infantil</option>
-            <option value="estojo">Estojo Infantil</option>
-            <option selected value="estojo">Estojo Infantil</option>
-            <option value="estojo">Estojo Infantil</option>
-          </select>
+          <select
+                name="produto"
+                id="produto"
+                value={selectedProduto}
+                onChange={handleSelectProduto}
+              >
+                <option value="0">Selecione um produto</option>
+
+                {produtos.map(produto => (
+                  <option key={produto.id} value={produto.id}>
+                    {produto.nome}
+                  </option>
+                ))}
+              </select>
 
           <p>Demanda (quantidade)</p>
           <input
             placeholder="Demanda"
-            value={demanda}
+            value={quantidade}
             type="number"
             min="1"
-            onChange={e => setDemanda(e.target.value)}
+            onChange={e => setQuantidade(e.target.value)}
           />
 
           <p>Data</p>
@@ -80,6 +106,7 @@ export default function Register() {
             placeholder="Data"
             value={data}
             onChange={e => setData(e.target.value)}
+            type="date"
           />
 
           <button className="button" type="submit">Cadastrar</button>

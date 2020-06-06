@@ -31,17 +31,14 @@ export default function Register() {
   
     try {
       const response = await api.post('/operador', dados);
-
+      
       alert(`Operador cadastrado com sucesso`);
 
-      history.push('/');
+      history.push('/operador/cadastrar');
     } catch (err) {
       alert(`Não foi possível cadastrar, tente novamente`);
     }
-
-  
   }
-  
 
   return (
     <div className="register-container">
@@ -68,11 +65,12 @@ export default function Register() {
 
         <form onSubmit={handleRegister}>
 
-          <h1>Cadastro de Funcionário</h1>
+          <h1>Cadastro de Operador</h1>
           <p>Nome Completo</p>
           <input
             placeholder="Nome Completo"
             value={nome}
+            id="nome"
             onChange={e => setNome(e.target.value)}
           />
 
