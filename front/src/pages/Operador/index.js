@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 //import { FiArrowLeft } from 'react-icons/fi';
 
-//import api from '../../services/api';
+import api from '../../services/api';
 import './styles.css';
 
 
 export default function Register() {
-  const [name, setName] = useState('');
+  const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [cargo, setCargo] = useState('');
   const [data, setData] = useState('');
@@ -19,8 +19,8 @@ export default function Register() {
   async function handleRegister(e) {
     e.preventDefault();
 
-    const data = {
-      name,
+    const dados = {
+      nome,
       email,
       cargo,
       data,
@@ -28,14 +28,15 @@ export default function Register() {
       saida
     };
 
+  
     try {
-      //const response = await api.post('ongs', data);
+      const response = await api.post('/operador', dados);
+      
+      alert(`Operador cadastrado com sucesso`);
 
-      //alert(`Seu ID de acesso: ${response.data.id}`);
-
-      history.push('/');
+      history.push('/operador/cadastrar');
     } catch (err) {
-      alert('Erro no cadastro, tente novamente.');
+      alert(`Não foi possível cadastrar, tente novamente`);
     }
   }
 
@@ -64,13 +65,15 @@ export default function Register() {
 
         <form onSubmit={handleRegister}>
 
-          <h1>Cadastro de Funcionário</h1>
+          <h1>Cadastro de Operador</h1>
           <p>Nome Completo</p>
           <input
             placeholder="Nome Completo"
-            value={name}
-            onChange={e => setName(e.target.value)}
+            value={nome}
+            id="nome"
+            onChange={e => setNome(e.target.value)}
           />
+
 
           <p>E-mail</p>
           <input
@@ -80,8 +83,6 @@ export default function Register() {
             onChange={e => setEmail(e.target.value)}
           />
 
-
-          <div>
             <p>Cargo</p>
             <input
               placeholder="Cargo"
@@ -89,16 +90,13 @@ export default function Register() {
               onChange={e => setCargo(e.target.value)}
             />
 
-            <p>Data de Admissão</p>
-            <input
-              placeholder="Data Admissão"
-              value={data}
-              onChange={e => setData(e.target.value)}
-              type="date"
-            />
-          </div>
-
-
+          <p>Data de Admissão</p>
+        <input 
+            placeholder="Data Admissão"
+            value={data}
+            onChange={e => setData(e.target.value)}
+            type = "date"
+          />
 
           <p>Horário de Trabalho</p>
           <div className="input-group">

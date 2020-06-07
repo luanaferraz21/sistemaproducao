@@ -16,7 +16,7 @@ return (
 
             <form>
             <label htmlFor="Senha">Senha</label>
-            <input type="senha" id="senha" placeholder="Digite aqui sua senha"/>
+            <input type="password" id="senha" placeholder="Digite aqui sua senha"/>
             </form>
 
             <Link className="back-link" to="/producao/cadastrar">Entrar</Link>

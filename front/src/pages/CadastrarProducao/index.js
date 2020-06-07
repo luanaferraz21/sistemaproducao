@@ -86,6 +86,7 @@ export default function Register() {
               placeholder="Data"
               value={data}
               onChange={e => setData(e.target.value)}
+              type='date'
             />
 
           <button className="button" type="submit">Cadastrar</button>
