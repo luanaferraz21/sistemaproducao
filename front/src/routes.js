@@ -1,5 +1,6 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { isAuthenticated, getTypeUser } from "./services/auth";
 
 import Operador from './pages/Operador';
 import Login from './pages/Login';
@@ -11,10 +12,25 @@ import RelatorioProducao from './pages/RelatorioProducao';
 
 
 export default function Routes() {
+
+  const PrivateRoute = ({ component: Component, type , ...rest }) => (
+    <Route
+      {...rest}
+      render={props =>
+        (isAuthenticated() && type <= getTypeUser() ) ? (
+          <Component {...props} />
+        ) : (
+          <Redirect to={{ pathname: "/", state: { from: props.location } }} />
+        )
+      }
+    />
+  );
+
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path="/" component={Login} />
+        <PrivateRoute type='1' path="/app" component={() => <h1>App</h1>} />
         <Route path="/login" component={Login} />
         <Route path="/operador/cadastrar" component={Operador} />
         <Route path="/demanda/cadastrar" component={CadastrarDemanda} />
