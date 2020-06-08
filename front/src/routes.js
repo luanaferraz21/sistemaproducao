@@ -30,14 +30,13 @@ export default function Routes() {
     <BrowserRouter>
       <Switch>
         <Route exact path="/" component={Login} />
-        <PrivateRoute type='1' path="/app" component={() => <h1>App</h1>} />
         <Route path="/login" component={Login} />
-        <Route path="/operador/cadastrar" component={Operador} />
-        <Route path="/demanda/cadastrar" component={CadastrarDemanda} />
-        <Route path="/producao/cadastrar" component={CadastrarProducao} />
-        <Route path="/equipamento/relatorio" component={Equipamento} />
-        <Route path="/defeitos" component={Defeitos} />
-        <Route path="/relatorioProducao" component={RelatorioProducao} />
+        <PrivateRoute type='1' Route path="/operador/cadastrar" component={Operador} />
+        <PrivateRoute type='1' Route path="/demanda/cadastrar" component={CadastrarDemanda} />
+        <PrivateRoute type='1' Route path="/producao/cadastrar" component={CadastrarProducao} />
+        <PrivateRoute type='1' Route path="/equipamento/relatorio" component={Equipamento} />
+        <PrivateRoute type='1' Route path="/defeitos" component={Defeitos} />
+        <PrivateRoute type='1' Route path="/relatorioProducao" component={RelatorioProducao} />
       </Switch>
     </BrowserRouter>
   );
