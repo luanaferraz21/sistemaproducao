@@ -22,6 +22,8 @@ module.exports = {
   async create(request, response) {
     const { quantidade, data, produto } = request.body;
 
+    console.log(produto);
+
     const produto_id = produto;
      
     const [id] = await connection('demandas').insert({

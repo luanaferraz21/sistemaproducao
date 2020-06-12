@@ -4,7 +4,15 @@ module.exports = {
   async index(request, response) {
     const operadores = await connection('operadores').select('*');
   
-    return response.json(operadores);
+    
+    const serializedItems = operadores.map((operador) => {
+      return {
+        id: operador.id,
+        nome: operador.nome
+      };
+    });
+
+    return response.json(serializedItems);
   },
 
   async create(request, response) {

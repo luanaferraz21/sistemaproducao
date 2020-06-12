@@ -1,42 +1,67 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 //import { FiArrowLeft } from 'react-icons/fi';
 
-//import api from '../../services/api';
-import impressora from '../../assets/impressora.jpg';
+import api from '../../services/api';
 import './styles.css';
 
 
 export default function Register() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [cargo, setCargo] = useState('');
-  const [data, setData] = useState('');
-  const [entrada, setEntrada] = useState('');
-  const [saida, setSaida] = useState('');
+  const [inicio, setInicio] = useState('');
+  const [fim, setFim] = useState('');
+  const [operadores, setOperadores] = useState([]);
+  const [equipamentos, setEquipamentos] = useState([]);
+  const [itens, setItems] = useState([]);
+
+
+  const [selectedEquipamento, setSelectedEquipamento] = useState('all');
+  const [selectedOperador, setSelectedOperador] = useState('all');
 
   const history = useHistory();
+
+  useEffect(() => {
+    api.get('/equipamentos').then((response) => {
+      setEquipamentos(response.data);
+    });
+  }, []);
+
+  useEffect(() => {
+    api.get('/operadores').then((response) => {
+      setOperadores(response.data);
+    });
+  }, []);
+
+  function handleSelectEquipamento(e) {
+    const equipamento = e.target.value;
+    setSelectedEquipamento(equipamento);
+  }
+
+  function handleSelectOperadores(e) {
+    const operador = e.target.value;
+    setSelectedOperador(operador);
+  }
 
   async function handleRegister(e) {
     e.preventDefault();
 
+    const operadores = selectedOperador;
+    const equipamentos = selectedEquipamento;
+
     const data = {
-      name,
-      email,
-      cargo,
-      data,
-      entrada,
-      saida
+      inicio,
+      fim,
+      operadores,
+      equipamentos
     };
 
     try {
-      //const response = await api.post('ongs', data);
+      const response = await api.post('relatorio/equipamentos', data);
 
-      //alert(`Seu ID de acesso: ${response.data.id}`);
+      setItems(response.data);
 
-      history.push('/');
+      
     } catch (err) {
-      alert('Erro no cadastro, tente novamente.');
+      alert('Tivemos um erro ao gerar o relatório, tente novamente.');
     }
   }
 
@@ -70,15 +95,18 @@ export default function Register() {
             <div className="input-group">
               <p>Inicio
                 <input
-                  placeholder="Cargo"
-                  value={cargo}
+                  placeholder="Inicio"
+                  value={inicio}
+                  onChange={e => setInicio(e.target.value)}
                   type="date"
+                  
                 /></p>
 
               <p>Fim
                 <input
-                  placeholder="Data Admissão"
-                  value={data}
+                  placeholder="Fim"
+                  value={fim}
+                  onChange={e => setFim(e.target.value)}
                   type="date"
                 />
               </p>
@@ -86,75 +114,67 @@ export default function Register() {
 
             <div className="input-group">
               <p>Equipamento
-                <select>
-                  <option selected value="estojo">TODOS EQUIPAMENTOS</option>
-                  <option value="estojo">Impressora de Tecido</option>
-                  <option value="estojo">Máquina de Corte</option>
-                  <option value="estojo">Máquina de Costura</option>
-                </select>
+                <select
+                name="equipamento"
+                id="equipamento"
+                value={selectedEquipamento}
+                onChange={handleSelectEquipamento}
+              >
+                <option value="all">TODOS EQUIPAMENTOS</option>
+
+                {equipamentos.map(equipamento => (
+                  <option key={equipamento.id} value={equipamento.id}>
+                    {equipamento.nome}
+                  </option>
+                ))}
+              </select>
               </p>
 
               <p>Operador
-                <select>
-                  <option selected value="estojo">TODOS OPERADORES</option>
-                  <option value="estojo">Luana</option>
-                  <option value="estojo">Clara</option>
+              <select
+                name="operador"
+                id="operador"
+                value={selectedOperador}
+                onChange={handleSelectOperadores}
+              >
+                <option value="all">TODOS OPERADORES</option>
 
-                </select>
+                {operadores.map(operador => (
+                  <option key={operador.id} value={operador.id}>
+                    {operador.nome}
+                  </option>
+                ))}
+              </select>
               </p>
             </div>
 
             <button className="button" type="submit">Gerar Relatório</button>
           </form>
 
+         
+
           <section className="relatorio">
             <h2>Relatório</h2>
-            <p>De 25/05/2020 a 29/05/2020</p>
-            <p>EQUIPAMENTO: Impressora de Tecidos</p>
-            <p>OPERADOR: Todos operadores</p>
-
-            <img src={impressora} alt="Equipamento" />
-            <p>Nº de Série: 0007-9970-09</p>
-            <p>Data de Aquisição: 07/02/2020</p>
 
             <h4>Utilizações</h4>
             <table >
               <tr>
                 <th>Data</th>
-                <th>Horário</th>
-                <th>Código</th>
-                <th>Nome</th>
+                <th>Equipamento</th>
+                <th>Nº de Série</th>
+                <th>Operador</th>
               </tr>
-              <tr>
-                <td>25/05/2020</td>
-                <td>08:00 - 12:00</td>
-                <td>001</td>
-                <td>Clara</td>
-              </tr>
-              <tr>
-                <td>26/05/2020</td>
-                <td>08:00 - 12:00</td>
-                <td>001</td>
-                <td>Clara</td>
-              </tr>
-              <tr>
-                <td>27/05/2020</td>
-                <td>08:00 - 12:00</td>
-                <td>001</td>
-                <td>Clara</td>
-              </tr>
-              <tr>
-                <td>28/05/2020</td>
-                <td>08:00 - 12:00</td>
-                <td>001</td>
-                <td>Clara</td>
-              </tr>
-              <tr>
-                <td>29/05/2020</td>
-                <td>08:00 - 12:00</td>
-                <td>001</td>
-                <td>Clara</td>
-              </tr>
+
+              {itens.map(item => (
+                <tr>
+                  <td>{item.data}</td>
+                  <td>{item.nome}</td>
+                  <td>{item.serie}</td>
+                  <td>{item.operador}</td>
+                </tr>
+            ))}
+
+             
             </table>
           </section>
 
