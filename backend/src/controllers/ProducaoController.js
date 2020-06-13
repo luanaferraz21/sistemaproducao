@@ -3,14 +3,15 @@ const paseto = require('../middleware/services/paseto')
 
 module.exports = {
   async index(request, response) {
-    const { page = 1 } = request.query;
+    const { a, b } = request.query;
+    console.log(request.query)
 
     const producao = await connection('producao')
-      .join('produtos', 'produtos.id', '=', 'producao.produto_id')
+      .join('produtos', 'produtos.id', '=', 'producao.produtos_id')
       .select([
         'producao.*', 
         'produtos.nome'
-      ])
+      ]).whereBetween('data', [a, b])
   
     return response.json(producao);
   },

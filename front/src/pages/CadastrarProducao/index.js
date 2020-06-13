@@ -7,26 +7,30 @@ import './styles.css';
 export default function Register() {
   const [produtos, setProdutos] = useState([]);
   const [selectedProduto, setSelectedProduto] = useState(0);
-  const [quantidade, setQuantidade] = useState('');
-  const [produtosDefeituosos, setProdutosDefeituosos] = useState('');
-  const [data, setData] = useState('');
+  const [quantidade, setQuantidade] = useState();
+  const [produtosDefeituosos, setProdutosDefeituosos] = useState();
+  const [data, setData] = useState();
 
 
   const history = useHistory();
 
-  useEffect(async () => {
-   await api.get("/produtos").then((response) => {
+  useEffect(() => {
+    fetchData()
+  }, [])
+
+  async function fetchData() {
+    await api.get("/produtos").then((response) => {
       setProdutos(response.data);
     })
-  }, [])
+  }
 
   async function handleRegister(e) {
     e.preventDefault();
 
     const dados = {
-      "produtos_id":selectedProduto,
+      "produtos_id": selectedProduto,
       quantidade,
-      "defeitos":produtosDefeituosos,
+      "defeitos": produtosDefeituosos,
       data
     };
 
@@ -37,9 +41,9 @@ export default function Register() {
 
       history.push('/producao/cadastrar');
 
-    
 
-  
+
+
     } catch (err) {
       alert('Erro no cadastro, tente novamente.');
     }
@@ -71,14 +75,14 @@ export default function Register() {
 
           <p>Produto</p>
           <select
-                name="produto"
-                id="produto"
-                value={selectedProduto}
-                onChange={e => setSelectedProduto(e.target.value)}
-              >
-                <option value="0">Selecione um produto</option>
+            name="produto"
+            id="produto"
+            value={selectedProduto}
+            onChange={e => setSelectedProduto(e.target.value)}
+          >
+            <option value="0">Selecione um produto</option>
             {
-              produtos.map((ele) => <option value={ele.id}>{ele.nome}</option>)
+              produtos.map((ele) => <option key={ele.id} value={ele.id}>{ele.nome}</option>)
             }
 
           </select>
@@ -87,16 +91,16 @@ export default function Register() {
           <input
             placeholder="Quantidade"
             value={quantidade}
-            type={Number}
+            type="number"
             min="1"
             onChange={e => setQuantidade(e.target.value)}
           />
 
           <p>Produtos defeituosos</p>
           <input
-            placeholder="ProdutosDefeituosos"
+            placeholder="Produtos Defeituosos"
             value={produtosDefeituosos}
-            type={Number}
+            type="number"
             min="1"
             onChange={e => setProdutosDefeituosos(e.target.value)}
           />

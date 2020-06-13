@@ -1,40 +1,35 @@
 import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 //import { FiArrowLeft } from 'react-icons/fi';
 
-//import api from '../../services/api';
-import impressora from '../../assets/impressora.jpg';
+import api from '../../services/api';
+
 import './styles.css';
 
 
 export default function Register() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [cargo, setCargo] = useState('');
-  const [data, setData] = useState('');
-  const [entrada, setEntrada] = useState('');
-  const [saida, setSaida] = useState('');
+  const [dataDe, setDataDe] = useState('');
+  const [dataAte, setDataAte] = useState('');
+  const [producoes, setProducoes] = useState();
 
-  const history = useHistory();
+function formatDate(date) {
+  date= date.split('-');
+  return date[2]+"/"+date[1]+"/"+date[0];
+}
 
   async function handleRegister(e) {
     e.preventDefault();
 
     const data = {
-      name,
-      email,
-      cargo,
-      data,
-      entrada,
-      saida
+      a: dataDe,
+      b: dataAte
     };
 
     try {
-      //const response = await api.post('ongs', data);
+      const response = await api.get('producao', { params: data });
+      setProducoes(response.data);
+      console.log(response.data)
 
-      //alert(`Seu ID de acesso: ${response.data.id}`);
-
-      history.push('/');
     } catch (err) {
       alert('Erro no cadastro, tente novamente.');
     }
@@ -74,82 +69,53 @@ export default function Register() {
                 <p>Inicio
                 <input
                     placeholder=""
-                    value={cargo}
+                    value={dataDe}
                     type="date"
+                    onChange={e => setDataDe(e.target.value)}
                   /></p>
 
                 <p>Fim
                 <input
                     placeholder=""
-                    value={data}
+                    value={dataAte}
                     type="date"
+                    onChange={e => setDataAte(e.target.value)}
                   />
                 </p>
               </div>
               <button className="button" type="submit">Gerar Relatório</button>
             </form>
           </div>
+          {
+            producoes &&
           <section className="relatorio">
             <h2>Relatório</h2>
-            <p>De 25/05/2020 a 29/05/2020</p>
+            <p>De {formatDate(dataDe)} a {formatDate(dataAte)}</p>
 
-            <h4>Estojo Infantil</h4>
             <table >
+              <thead>
               <tr>
+                <th>Nome do Produto</th>
                 <th>Data</th>
                 <th>Quantidade Produzida</th>
               </tr>
-              <tr>
-                <td>25/05/2020</td>
-                <td>5</td>
-              </tr>
-              <tr>
-                <td>26/05/2020</td>
-                <td>5</td>
-              </tr>
-              <tr>
-                <td>27/05/2020</td>
-                <td>5</td>
-              </tr>
-              <tr>
-                <td>28/05/2020</td>
-                <td>5</td>
-              </tr>
-              <tr>
-                <td>29/05/2020</td>
-                <td>5</td>
-              </tr>
-            </table>
+              </thead>
+              <tbody>
+              {
+                producoes.map((ele) =>
+                  <tr key={ele.id}>
+                    <td>{ele.nome}</td>
+                    <td>{formatDate(ele.data)}</td>
+                    <td>{ele.quantidade}</td>
+                  </tr>
+                )
+              }
+              </tbody>
 
-            <h4>Estojo Feminino</h4>
-            <table>
-              <tr>
-                <th>Data</th>
-                <th>Quantidade Produzida</th>
-              </tr>
-              <tr>
-                <td>25/05/2020</td>
-                <td>5</td>
-              </tr>
-              <tr>
-                <td>26/05/2020</td>
-                <td>5</td>
-              </tr>
-              <tr>
-                <td>27/05/2020</td>
-                <td>5</td>
-              </tr>
-              <tr>
-                <td>28/05/2020</td>
-                <td>5</td>
-              </tr>
-              <tr>
-                <td>29/05/2020</td>
-                <td>5</td>
-              </tr>
             </table>
 
           </section>
+}
         </div>
       </div>
     </div>
