@@ -7,7 +7,7 @@ module.exports = {
     const [count] = await connection('demandas').count();
 
     const demandas = await connection('demandas')
-      .join('produtos', 'produtos.id', '=', 'demandas.produto_id')
+      .join('produtos', 'produtos.id', '=', 'demandas.produtos_id')
       .select([
         'demandas.*', 
         'produtos.nome'

@@ -4,7 +4,7 @@ module.exports = function (authorizationLevel) {
     return async function (req, res, next) {
 
         //Bypass Temporario!
-        //return next();
+        return next();
 
         let token;
         try {
