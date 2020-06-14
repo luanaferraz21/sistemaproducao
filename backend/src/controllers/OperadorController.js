@@ -17,7 +17,7 @@ module.exports = {
 
   async create(request, response) {
 
-    const { id, nome, email, cargo, data, entrada, saida } = request.body;
+    const { id, nome, email, cargo, data, entrada, saida, senha } = request.body;
      
     await connection('operadores').insert({
       id,
@@ -26,7 +26,8 @@ module.exports = {
       cargo, 
       data, 
       entrada, 
-      saida
+      saida,
+      senha
     })
 
     return response.json({ id });

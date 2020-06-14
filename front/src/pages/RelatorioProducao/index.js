@@ -12,10 +12,14 @@ export default function Register() {
   const [dataAte, setDataAte] = useState('');
   const [producoes, setProducoes] = useState();
 
-function formatDate(date) {
-  date= date.split('-');
-  return date[2]+"/"+date[1]+"/"+date[0];
-}
+  function formatDate(date) {
+    //date= date.split('-');
+    const ano = date.substr(0,4);
+    const mes = date.substr(5,2);
+    const dia = date.substr(8,2);
+    
+    return dia+"/"+mes+"/"+ano;
+  }
 
   async function handleRegister(e) {
     e.preventDefault();

@@ -7,9 +7,9 @@ const DemandaController = require('./controllers/DemandaController');
 const ProdutoController = require('./controllers/ProdutoController');
 const LoginController = require('./controllers/LoginController');
 const EquipamentoController = require('./controllers/EquipamentoController');
+const ProducaoController = require('./controllers/ProducaoController');
 
 const routes = express.Router();
-routes.post('/operador', OperadorController.create);
 
 routes.post('/login', LoginController.find);
 
@@ -24,6 +24,9 @@ routes.get('/equipamentos', EquipamentoController.index);
 routes.get('/operadores', OperadorController.index);
 
 routes.post('/relatorio/equipamentos', EquipamentoController.search);
-routes.get('/produtos', canAccess('1'), ProdutoController.index);
+
+routes.post('/producao', canAccess('1'), ProducaoController.create);
+routes.get('/producao', canAccess('1'), ProducaoController.index);
+routes.get('/defeitos', canAccess('1'), ProducaoController.defeitos);
 
 module.exports = routes;

@@ -13,6 +13,7 @@ export default function Register() {
   const [data, setData] = useState('');
   const [entrada, setEntrada] = useState('');
   const [saida, setSaida] = useState('');
+  const [senha, setSenha] = useState('');
 
   const history = useHistory();
 
@@ -25,7 +26,8 @@ export default function Register() {
       cargo,
       data,
       entrada,
-      saida
+      saida,
+      senha
     };
 
   
@@ -81,6 +83,15 @@ export default function Register() {
             placeholder="E-mail"
             value={email}
             onChange={e => setEmail(e.target.value)}
+          />
+
+          
+        <p>Senha</p>
+          <input
+            type="password"
+            placeholder="Senha"
+            value={senha}
+            onChange={e => setSenha(e.target.value)}
           />
 
             <p>Cargo</p>

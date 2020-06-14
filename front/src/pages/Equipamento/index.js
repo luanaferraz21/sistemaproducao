@@ -41,6 +41,15 @@ export default function Register() {
     setSelectedOperador(operador);
   }
 
+  function formatDate(date) {
+    //date= date.split('-');
+    const ano = date.substr(0,4);
+    const mes = date.substr(5,2);
+    const dia = date.substr(8,2);
+    
+    return dia+"/"+mes+"/"+ano;
+  }
+
   async function handleRegister(e) {
     e.preventDefault();
 
@@ -167,7 +176,7 @@ export default function Register() {
 
               {itens.map(item => (
                 <tr>
-                  <td>{item.data}</td>
+                  <td>{formatDate(item.data)}</td>
                   <td>{item.nome}</td>
                   <td>{item.serie}</td>
                   <td>{item.operador}</td>
