@@ -41,9 +41,6 @@ export default function Register() {
 
       history.push('/producao/cadastrar');
 
-
-
-
     } catch (err) {
       alert('Erro no cadastro, tente novamente.');
     }
