@@ -16,6 +16,18 @@ module.exports = {
     return response.json(producao);
   },
 
+  async selectAll(request, response) {
+  
+    const producao = await connection('producao')
+      .join('produtos', 'produtos.id', '=', 'producao.produtos_id')
+      .select([
+        'producao.*', 
+        'produtos.nome'
+      ])
+  
+    return response.json(producao);
+  },
+
   async defeitos(request, response) {
     const { a, b } = request.query;
 
@@ -35,6 +47,7 @@ module.exports = {
     return response.json(producao);
   },
 
+  
   async create(request, response) {
 
     const { quantidade, defeitos, data, produtos_id } = request.body;

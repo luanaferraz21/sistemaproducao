@@ -29,4 +29,6 @@ routes.post('/producao', canAccess('1'), ProducaoController.create);
 routes.get('/producao', canAccess('1'), ProducaoController.index);
 routes.get('/defeitos', canAccess('1'), ProducaoController.defeitos);
 
+routes.get('/produzidos', ProducaoController.selectAll);
+
 module.exports = routes;
